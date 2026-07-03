@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HAEAHN Architecture — Yoonbin Alicia Kim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#B0C6E1;
+  --olive:#98AD57;
+  --bg:#FAFAF8;
+  --text:#1a1a1a;
+  --muted:#7a7a72;
+  --border:#e2e0da;
+  --card:#F2F2F0;
+  --alt:#F4F2EE;
+  --ph:#E2DEDA;
+  --r:22px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;overflow-x:clip;width:100%}
+body{font-family:'Manrope',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;width:100%}
+img,video,svg,iframe{max-width:100%;height:auto}
+.nav-logo img{height:80px;width:auto;max-width:none}
+*{cursor:-webkit-image-set(url('images/logo/d_cursor%201.png') 1x,url('images/logo/d_cursor@2x.png') 2x) 19 19,image-set(url('images/logo/d_cursor%201.png') 1x,url('images/logo/d_cursor@2x.png') 2x) 19 19,auto}
+
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ── NAV ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,250,248,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 48px;
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{
+  display:inline-flex;align-items:center;
+  font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1;
+  user-select:none;transition:transform .2s;
+}
+.nav-logo:hover{transform:scale(.96)}
+.nl-y{color:var(--blue)}
+.nl-oo{display:inline-flex;align-items:center;margin:0 .5px}
+.nl-rest{color:#7A9EBF}
+.logo-svg{display:block;flex-shrink:0}
+.nav-links{display:flex;gap:36px}
+.nav-links a{
+  font-size:13.5px;font-weight:500;color:var(--muted);
+  letter-spacing:.01em;transition:color .2s,font-weight .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--text);font-weight:700}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+section{padding:96px 0}
+section.alt{background:var(--alt)}
+
+/* ── LABEL ── */
+.lbl{
+  display:block;font-size:14px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:16px;
+}
+
+/* ── HEADING / BODY ── */
+.h2{
+  font-size:clamp(22px,2.8vw,36px);font-weight:800;
+  letter-spacing:-.03em;line-height:1.2;margin-bottom:24px;
+  max-width:760px;
+}
+.body{
+  font-size:16px;color:var(--muted);line-height:1.7;
+  max-width:720px;
+}
+
+/* ── HERO ── */
+.hero-title{
+  font-size:clamp(32px,4.5vw,64px);font-weight:800;
+  letter-spacing:-.035em;line-height:1.1;
+  max-width:960px;margin-bottom:24px;
+  animation:fadeUp .7s ease both;
+}
+.hero-sub{
+  font-size:16px;color:var(--muted);line-height:1.7;
+  max-width:680px;margin-bottom:40px;
+  animation:fadeUp .7s ease .1s both;
+}
+.meta-chips{
+  display:flex;flex-wrap:wrap;gap:10px;margin-bottom:64px;
+  animation:fadeUp .7s ease .18s both;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 18px;border-radius:100px;background:var(--card);
+  font-size:13px;
+}
+.chip-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.chip-v{font-weight:700}
+.hero-cover{animation:fadeUp .8s ease .26s both}
+
+/* ── FIGURE / IMAGE ── */
+.figure{
+  width:100%;border-radius:var(--r);overflow:hidden;
+  background:var(--card);display:block;
+}
+.figure img{width:100%;display:block}
+.cap{
+  font-size:13.5px;color:var(--muted);line-height:1.6;
+  margin-top:16px;max-width:760px;
+}
+.cap strong{color:var(--text);font-weight:700}
+
+/* ── TWO UP ── */
+.two-up{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;align-items:start}
+.two-up .figure{background:var(--bg)}
+section.alt .two-up .figure{background:var(--card)}
+
+/* ── ZONE TAGS ── */
+.zones{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.zone{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:100px;background:var(--bg);
+  font-size:13px;font-weight:600;
+}
+.zone .dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
+
+/* ── BACK LINK ── */
+.back-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;color:var(--muted);
+  transition:color .2s,gap .22s var(--ease);
+}
+.back-link:hover{color:var(--text);gap:14px}
+
+/* ── FOOTER ── */
+.footer{
+  padding:32px 48px;border-top:1px solid var(--border);
+  text-align:center;font-size:13px;color:var(--muted);letter-spacing:.02em;
+}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:none}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-inner,.wrap{padding-left:28px;padding-right:28px}
+  .two-up{grid-template-columns:1fr;gap:32px}
+}
+@media(max-width:600px){
+  .brk{display:none}
+  .nav-links{gap:20px}
+  .meta-chips{gap:8px}
+}
+@media(max-width:480px){
+  .nav-inner,.wrap{padding-left:20px;padding-right:20px}
+  section{padding:60px 0}
+  [style*="grid-template-columns"]{grid-template-columns:1fr !important;gap:20px !important}
+  [style*="display:flex;align-items:flex-start"]{flex-wrap:wrap !important}
+  .footer{padding:24px 20px}
+}
+
+/* ── SIDE NAV ── */
+.side-nav{position:fixed;left:28px;top:90px;z-index:90;opacity:0;transition:opacity .4s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.side-nav.visible{opacity:1;pointer-events:all}
+.side-nav-back{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--muted);text-decoration:none;margin-bottom:18px;letter-spacing:.01em;transition:color .2s}
+.side-nav-back:hover{color:var(--text)}
+.side-nav-links{display:flex;flex-direction:column;gap:6px;position:relative;padding-left:16px}
+.side-nav-links::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:3px;background:var(--card);border-radius:3px}
+.side-nav-fill{position:absolute;left:0;top:0;width:3px;height:0;background:linear-gradient(180deg,#C4D5EC 0%,#B0C6E1 35%,#98AD57 100%);border-radius:3px;transition:height .35s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.side-nav-link{font-size:11.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:4px 0;transition:color .2s;line-height:1.4;letter-spacing:.005em;white-space:nowrap}
+.side-nav-link:hover{color:var(--text)}
+.side-nav-link.active{color:var(--text);font-weight:700}
+@media(max-width:1340px){.side-nav{display:none}}
+
+/* ── RENDER CAROUSEL ── */
+.render-carousel{position:relative;border-radius:var(--r);overflow:hidden;background:var(--card)}
+.render-slides{display:block;width:100%}
+.render-slide{width:100%;display:none;object-fit:cover}
+.render-slide.active{display:block}
+.render-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(120,120,120,.25);border:none;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;
+  color:#fff;opacity:0;transition:transform .2s;
+}
+.render-arrow.visible{display:flex}
+.render-prev{left:16px}
+.render-next{right:16px}
+.render-carousel:hover .render-arrow.visible{opacity:1}
+.render-arrow:hover{background:rgba(120,120,120,.65)}
+.render-dots{
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;opacity:0;transition:transform .2s;
+}
+.render-carousel:hover .render-dots{opacity:1}
+.render-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,.5);transition:background .2s;
+}
+.render-dot.active{background:#fff}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="yoonbin.">
+      <img src="images/logo/logo-3-ring-period.png" alt="yoonbin." style="height:80px;width:auto;display:block;margin-left:-23px">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Work</a></li>
+      <li><a href="index.html#play">Play</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="side-nav" id="sideNav">
+  <div class="side-nav-links">
+    <span class="side-nav-fill" id="navFill"></span>
+    <a href="#overview" class="side-nav-link">Overview</a>
+    <a href="#planning" class="side-nav-link">Planning</a>
+    <a href="#floor-plan" class="side-nav-link">Floor Plan</a>
+    <a href="#visualisation" class="side-nav-link">3D Visualisation</a>
+  </div>
+</nav>
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="wrap">
+    <h1 class="hero-title">A kids' zone built<br>around play.</h1>
+    <p class="hero-sub">An interior design for the children's zone of a Hanwha Resort — a single flowing room organised around an open play space, an interactive light wall, and a quiet café for parents.</p>
+    <div class="meta-chips">
+      <span class="chip"><span class="chip-k">ROLE</span><span class="chip-v">Interior Design Intern</span></span>
+      <span class="chip"><span class="chip-k">Studio</span><span class="chip-v">HAEAHN Architecture, Seoul</span></span>
+      <span class="chip"><span class="chip-k">Timeline</span><span class="chip-v">Jun – Aug 2022</span></span>
+      <span class="chip"><span class="chip-k">Tools</span><span class="chip-v">AutoCAD · SketchUp · Enscape</span></span>
+    </div>
+    <figure class="hero-cover figure">
+      <img src="images/visual/Haeahn/render-1.jpg" alt="Kids' zone — central play space with interactive light wall">
+    </figure>
+  </div>
+</section>
+
+<!-- ══ OVERVIEW ══ -->
+<section class="alt" id="overview">
+  <div class="wrap">
+    <span class="lbl">Overview</span>
+    <h2 class="h2">From measured plan to rendered room.</h2>
+    <p class="body">During my internship at HAEAHN Architecture, I designed and developed the floor plan for a resort kids' zone — leading it from research and planning in AutoCAD through to 3D visualisation in SketchUp and Enscape. The brief was a small footprint with a lot to hold: somewhere children could move and play freely, while parents stayed close and comfortable.</p>
+    <p class="body" style="margin-top:16px">The design answers it with one open room. Organic, rounded forms replace hard corners, a curved interactive wall anchors the play space, and a café tucks into the corner so the two worlds share a single view.</p>
+  </div>
+</section>
+
+<!-- ══ PROCESS / SKETCHES ══ -->
+<section id="planning">
+  <div class="wrap">
+    <span class="lbl">Planning</span>
+    <h2 class="h2">The layout started by hand.</h2>
+    <p class="body">I began by studying the space and sketching options — first dividing the room into separate zones, then opening it up into one connected layout where each area flows naturally into the next.</p>
+    <div class="two-up">
+      <div>
+        <figure class="figure">
+          <img src="images/visual/Haeahn/sketch-ideation.png" alt="Early planning sketches dividing the play zone into partitions">
+        </figure>
+        <p class="cap" style="margin-top:12px;padding:0 4px"><strong>Ideation.</strong> Sketching zone layouts for flow and openness.</p>
+      </div>
+      <div>
+        <figure class="figure">
+          <img src="images/visual/Haeahn/sketch-plan.png" alt="Hand sketch of the unified floor plan">
+        </figure>
+        <p class="cap" style="margin-top:12px;padding:0 4px"><strong>Hand study.</strong> The resolved layout — all five zones in one open room.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FLOOR PLAN ══ -->
+<section class="alt" id="floor-plan">
+  <div class="wrap">
+    <span class="lbl">Floor Plan</span>
+    <h2 class="h2">Drawn to scale in AutoCAD.</h2>
+    <p class="body">The final plan organises a 8.8 × 5.6 m footprint into five clear zones, with the curved play space at the center and circulation kept generous for small children.</p>
+    <div class="zones">
+      <span class="zone"><span class="dot"></span>Play Space</span>
+      <span class="zone"><span class="dot"></span>Interactive Wall</span>
+      <span class="zone"><span class="dot"></span>Café for Parents</span>
+      <span class="zone"><span class="dot"></span>Restroom</span>
+      <span class="zone"><span class="dot"></span>Storage</span>
+    </div>
+    <figure class="figure" style="margin-top:40px;background:none">
+      <img src="images/visual/Haeahn/floor-plan.png" alt="AutoCAD floor plan of the resort kids' zone">
+    </figure>
+  </div>
+</section>
+
+<!-- ══ 3D VISUALISATION ══ -->
+<section id="visualisation">
+  <div class="wrap">
+    <span class="lbl">3D Visualisation</span>
+    <h2 class="h2">Modelled in SketchUp,<br class="brk"> rendered in Enscape.</h2>
+    <p class="body">The plan was modelled in three dimensions to study light, material, and scale — soft pink terrazzo tones, warm timber play structures, and a glowing interactive wall that turns the room's longest surface into the main attraction.</p>
+    <div style="margin-top:40px">
+      <div class="render-carousel" id="renderCarousel">
+        <div class="render-slides">
+          <img class="render-slide active" src="images/visual/Haeahn/render-1.jpg" alt="Perspective view showing the interactive wall and play space">
+          <img class="render-slide" src="images/visual/Haeahn/render-2.jpg" alt="Perspective view toward the climbing stair, slide, and ball pit">
+        </div>
+        <button class="render-arrow render-prev" aria-label="Previous view" onclick="renderNav(-1)">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="render-arrow render-next" aria-label="Next view" onclick="renderNav(1)">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="render-dots">
+          <span class="render-dot active" onclick="renderGoTo(0)"></span>
+          <span class="render-dot" onclick="renderGoTo(1)"></span>
+        </div>
+      </div>
+      <p class="cap" id="renderCap" style="margin-top:12px;padding:0 4px"><strong>View 1.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BACK TO WORK ══ -->
+<div class="wrap">
+  <div style="padding:64px 0 96px">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Work
+    </a>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  © 2026 Yoonbin Alicia Kim. Designed with care.
+</footer>
+
+
+<script>
+var renderIndex = 0;
+var renderCaptions = [
+  '<strong>View 1.</strong>',
+  '<strong>View 2.</strong>'
+];
+function updateArrows(){
+  var prev = document.querySelector('.render-prev');
+  var next = document.querySelector('.render-next');
+  var total = document.querySelectorAll('.render-slide').length;
+  prev.classList.toggle('visible', renderIndex > 0);
+  next.classList.toggle('visible', renderIndex < total - 1);
+}
+function renderGoTo(i){
+  var slides = document.querySelectorAll('.render-slide');
+  var dots = document.querySelectorAll('.render-dot');
+  slides[renderIndex].classList.remove('active');
+  dots[renderIndex].classList.remove('active');
+  renderIndex = i;
+  slides[renderIndex].classList.add('active');
+  dots[renderIndex].classList.add('active');
+  document.getElementById('renderCap').innerHTML = renderCaptions[renderIndex];
+  updateArrows();
+}
+function renderNav(dir){
+  var total = document.querySelectorAll('.render-slide').length;
+  renderGoTo((renderIndex + dir + total) % total);
+}
+updateArrows();
+(function(){
+  var nav = document.getElementById('sideNav');
+  var hero = document.getElementById('hero');
+  if(!nav||!hero) return;
+  function updateNavVisibility(){
+    nav.classList.toggle('visible', window.scrollY > 200);
+  }
+  window.addEventListener('scroll', updateNavVisibility, {passive:true});
+  updateNavVisibility();
+  var links = nav.querySelectorAll('.side-nav-link');
+  var sections = Array.from(links).map(function(l){
+    return document.querySelector(l.getAttribute('href'));
+  }).filter(Boolean);
+  var fill = document.getElementById('navFill');
+  var activeLink = null;
+  function setFill(link){
+    if(!fill||!link) return;
+    fill.style.height = (link.offsetTop + link.offsetHeight) + 'px';
+  }
+  var secObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){l.classList.remove('active')});
+        var a = nav.querySelector('[href="#'+e.target.id+'"]');
+        if(a){ a.classList.add('active'); activeLink = a; setFill(a); }
+      }
+    });
+  },{rootMargin:'-15% 0px -70% 0px',threshold:0});
+  sections.forEach(function(s){secObs.observe(s)});
+  window.addEventListener('resize', function(){ setFill(activeLink); }, {passive:true});
+})();
+</script>
+</body>
+</html>

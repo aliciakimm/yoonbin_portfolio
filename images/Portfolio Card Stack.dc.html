@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; background: #eceae2; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<!-- SVG filter for paper grain texture -->
+<svg style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
+  <defs>
+    <filter id="paperGrain" color-interpolation-filters="linearRGB" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.62" numOctaves="4" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grey"/>
+      <feBlend in="SourceGraphic" in2="grey" mode="multiply" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<div style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+  <div style="width: 800px; height: 680px; background: #f5f0e8; border-radius: 24px; display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; user-select: none;" onClick="{{ toggle }}">
+
+    <!-- Envelope assembly: 380×260 — flap is an overlay on the top half -->
+    <div style="position: relative; width: 380px; height: 260px;">
+
+      <!-- Envelope back (z:1) -->
+      <div style="position: absolute; top: 0; left: 0; width: 380px; height: 260px; z-index: 1; background: rgba(172,188,200,0.96); border-radius: 4px; border: 1.5px solid rgba(138,158,172,0.88); filter: url(#paperGrain);">
+      </div>
+
+      <!-- Interior lining — deep navy, fades in on open (z:2) -->
+      <div style="{{ interiorStyle }}">
+      </div>
+
+      <!-- Photo cards (z:3–7, always inside stacking context) -->
+      <sc-for list="{{ photos }}" as="photo" hint-placeholder-count="5">
+        <div style="{{ photo.cardStyle }}" onMouseEnter="{{ photo.onMouseEnter }}" onMouseLeave="{{ photo.onMouseLeave }}">
+          <x-import component-from-global-scope="image-slot"
+                    from="./image-slot.js"
+                    id="{{ photo.slotId }}"
+                    placeholder="{{ photo.slotLabel }}"
+                    shape="rect"
+                    style="width: 141px; height: 176px; display: block; border-radius: 2px;"
+                    hint-size="141px,176px"></x-import>
+          <div style="position: absolute; bottom: 5px; left: 0; right: 0; text-align: center; font-family: 'Courier New', monospace; font-size: 8px; color: #b2a898; letter-spacing: 0.06em; pointer-events: none;">{{ photo.caption }}</div>
+
+        </div>
+      </sc-for>
+
+      <!-- Front face — clip-path animates open (V-notch where flap was), z:28 -->
+      <div style="{{ frontFaceStyle }}">
+        <svg width="380" height="260" viewBox="0 0 380 260" fill="none" style="display: block;">
+          <rect x="0.75" y="0.75" width="378.5" height="258.5" rx="3.5"
+                fill="rgba(172,188,200,0.58)"
+                stroke="rgba(135,155,170,0.88)"
+                stroke-width="1.5"/>
+          <line x1="0"   y1="0"   x2="190" y2="130" stroke="rgba(112,135,150,0.28)" stroke-width="1"/>
+          <line x1="380" y1="0"   x2="190" y2="130" stroke="rgba(112,135,150,0.28)" stroke-width="1"/>
+          <line x1="0"   y1="260" x2="190" y2="130" stroke="rgba(112,135,150,0.28)" stroke-width="1"/>
+          <line x1="380" y1="260" x2="190" y2="130" stroke="rgba(112,135,150,0.28)" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <!-- Flap back — dark navy triangle above the envelope (slides up when open, z:11) -->
+      <div style="{{ flapBackStyle }}">
+        <svg width="380" height="130" viewBox="0 0 380 130" fill="none" style="display: block;">
+          <polygon points="0,130 380,130 190,0"
+                   fill="rgba(108,132,150,0.94)"
+                   stroke="rgba(88,112,130,0.82)"
+                   stroke-width="1.5"
+                   stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- Flap front — light blue sealed flap (fades out when open, z:10) -->
+      <div style="{{ flapStyle }}">
+        <svg width="380" height="130" viewBox="0 0 380 130" fill="none" style="display: block;">
+          <polygon points="0,0 380,0 190,130"
+                   fill="rgba(172,188,200,0.75)"
+                   stroke="rgba(135,155,170,0.88)"
+                   stroke-width="1.5"
+                   stroke-linejoin="round"/>
+          <line x1="0"   y1="0" x2="190" y2="130" stroke="rgba(112,135,150,0.28)" stroke-width="1"/>
+          <line x1="380" y1="0" x2="190" y2="130" stroke="rgba(112,135,150,0.28)" stroke-width="1"/>
+        </svg>
+      </div>
+
+    </div>
+
+    <!-- Hint -->
+    <div style="position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%); font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 0.10em; color: rgba(102,94,86,0.56); white-space: nowrap; pointer-events: none; transition: opacity 0.4s;">
+      {{ hintText }}
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { isOpen: false, hoveredPhoto: null };
+
+  renderVals() {
+    const { isOpen: open, hoveredPhoto } = this.state;
+    const setHovered = i => this.setState({ hoveredPhoto: i });
+    const clearHovered = () => this.setState({ hoveredPhoto: null });
+
+    const captions  = ['01', '02', '03', '04', '05'];
+    const slotLabels = captions.map(() => 'drop photo here');
+
+    // Assembly is 380×260. Envelope opening = top of assembly (y=0).
+    // Photo base: top=27, height=205, bottom=232.
+    // Fan: ~50% above, ~50% inside — matches Laufey reference.
+    const scatter = [
+      { x: -95,  y: -115, r: -25 },  // top=-88, bottom=117 (57% inside)
+      { x: -46,  y: -125, r: -12 },  // top=-98, bottom=107 (52% inside)
+      { x:   0,  y: -130, r:   0 },  // top=-103, bottom=102 (50% inside)
+      { x:  46,  y: -125, r:  12 },
+      { x:  95,  y: -115, r:  25 },
+    ];
+
+    const stack = [
+      { x: -12, y:  3, r: -3.2 },
+      { x:  -6, y:  1, r: -1.5 },
+      { x:   0, y:  0, r:   0  },
+      { x:   6, y:  1, r:  1.5 },
+      { x:  12, y:  3, r:  3.2 },
+    ];
+
+    const photos = captions.map((cap, i) => {
+      const pos = open ? scatter[i] : stack[i];
+      const centerDist = Math.abs(i - 2);
+      const delay = open ? (0.06 + centerDist * 0.06) : (centerDist * 0.04);
+      const isHovered = open && hoveredPhoto === i;
+      return {
+        slotId: `pf-photo-${i}`,
+        caption: cap,
+        slotLabel: slotLabels[i],
+        onMouseEnter: open ? () => setHovered(i) : null,
+        onMouseLeave: open ? clearHovered : null,
+        cardStyle: {
+          position: 'absolute',
+          top: '27px',
+          left: '113px',
+          width: '155px',
+          height: '205px',
+          background: '#faf9f7',
+          borderRadius: '3px',
+          padding: '7px 7px 22px',
+          boxSizing: 'border-box',
+          boxShadow: isHovered
+            ? '0 28px 60px rgba(0,0,0,0.30), 0 6px 16px rgba(0,0,0,0.14)'
+            : open ? '0 8px 28px rgba(0,0,0,0.20), 0 2px 8px rgba(0,0,0,0.10)' : '0 2px 10px rgba(0,0,0,0.13)',
+          transform: isHovered
+            ? `translateX(${pos.x}px) translateY(${pos.y - 52}px) rotate(${pos.r * 0.3}deg) scale(1.13)`
+            : `translateX(${pos.x}px) translateY(${pos.y}px) rotate(${pos.r}deg)`,
+          transition: isHovered
+            ? 'transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease'
+            : `transform 0.70s cubic-bezier(0.34,1.56,0.64,1) ${delay}s, box-shadow 0.4s ease`,
+          zIndex: isHovered ? 35 : open ? 23 + i : 3 + i,
+          cursor: open ? 'default' : 'pointer',
+          willChange: 'transform',
+        },
+      };
+    });
+
+    return {
+      isOpen: open,
+      toggle: () => this.setState(s => ({ isOpen: !s.isOpen })),
+      photos,
+      // Flap front: sealed state triangle, fades out when open
+      flapStyle: {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '380px',
+        height: '130px',
+        zIndex: 29,
+        opacity: open ? 0 : 1,
+        transition: open ? 'opacity 0.28s ease' : 'opacity 0.22s ease 0.30s',
+        pointerEvents: 'none',
+      },
+      // Flap back: dark navy triangle that appears ABOVE envelope when open (like folded-back flap)
+      flapBackStyle: {
+        position: 'absolute',
+        top: '-130px',
+        left: '0',
+        width: '380px',
+        height: '130px',
+        zIndex: 22,
+        opacity: open ? 1 : 0,
+        transform: open ? 'translateY(0px)' : 'translateY(14px)',
+        filter: open ? 'drop-shadow(0 4px 12px rgba(0,0,0,0.22))' : 'none',
+        transition: open
+          ? 'opacity 0.35s ease 0.14s, transform 0.42s cubic-bezier(0.34,1.56,0.64,1) 0.14s'
+          : 'opacity 0.20s ease, transform 0.20s ease',
+        pointerEvents: 'none',
+      },
+      frontFaceStyle: {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '380px',
+        height: '260px',
+        zIndex: 28,
+        pointerEvents: 'none',
+        clipPath: open
+          ? 'polygon(0% 0%, 50% 50%, 100% 0%, 100% 100%, 0% 100%)'
+          : 'polygon(0% 0%, 50% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        transition: 'clip-path 0.55s cubic-bezier(0.4,0,0.2,1)',
+      },
+      interiorStyle: {
+        position: 'absolute',
+        top: '8px',
+        left: '8px',
+        width: '364px',
+        height: '244px',
+        zIndex: 2,
+        background: 'rgba(108,132,150,0.88)',
+        borderRadius: '2px',
+        opacity: open ? 1 : 0,
+        transition: open ? 'opacity 0.30s ease 0.22s' : 'opacity 0.15s ease 0s',
+        pointerEvents: 'none',
+      },
+      hintText: open ? '↓  click anywhere to close' : '↑  click to open',
+    };
+  }
+}
+</script>
+</body>
+</html>

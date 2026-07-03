@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bumble IRL — Yoonbin Alicia Kim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#B0C6E1;
+  --olive:#98AD57;
+  --bg:#FAFAF8;
+  --text:#1a1a1a;
+  --muted:#7a7a72;
+  --border:#e2e0da;
+  --card:#F2F2F0;
+  --alt:#F4F2EE;
+  --ph:#E2DEDA;
+  --r:22px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;overflow-x:clip;width:100%}
+body{font-family:'Manrope',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;width:100%}
+img,video,svg,iframe{max-width:100%;height:auto}
+.nav-logo img{height:80px;width:auto;max-width:none}
+*{cursor:-webkit-image-set(url('images/logo/d_cursor%201.png') 1x,url('images/logo/d_cursor@2x.png') 2x) 19 19,image-set(url('images/logo/d_cursor%201.png') 1x,url('images/logo/d_cursor@2x.png') 2x) 19 19,auto}
+
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ── NAV ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(250,250,248,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;padding:0 48px;
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{
+  display:inline-flex;align-items:center;
+  font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1;
+  user-select:none;transition:transform .2s;
+}
+.nav-logo:hover{transform:scale(.96)}
+.nl-y{color:var(--blue)}
+.nl-oo{display:inline-flex;align-items:center;margin:0 .5px}
+.nl-rest{color:#7A9EBF}
+.logo-svg{display:block;flex-shrink:0}
+.nav-links{display:flex;gap:36px}
+.nav-links a{
+  font-size:13.5px;font-weight:500;color:var(--muted);
+  letter-spacing:.01em;transition:color .2s,font-weight .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--text);font-weight:700}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+section{padding:96px 0}
+section.alt{background:var(--alt)}
+
+/* ── LABEL ── */
+.lbl{
+  display:block;font-size:14px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:16px;
+}
+
+/* ── HEADING / BODY ── */
+.h2{
+  font-size:clamp(22px,2.8vw,36px);font-weight:800;
+  letter-spacing:-.03em;line-height:1.2;margin-bottom:24px;
+  max-width:760px;
+}
+.body{
+  font-size:16px;color:var(--muted);line-height:1.7;
+  max-width:720px;
+}
+
+/* ── PLACEHOLDER ── */
+.ph{
+  background:var(--ph);border-radius:var(--r);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:600;color:#9a9690;
+  letter-spacing:.04em;text-align:center;padding:16px;
+}
+
+/* ── CARD (hover lift) ── */
+.card{
+  background:var(--card);border-radius:var(--r);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(20,20,30,.08)}
+section.alt .card{background:var(--bg)}
+
+/* ── HERO ── */
+.hero-title{
+  font-size:clamp(32px,4.5vw,64px);font-weight:800;
+  letter-spacing:-.035em;line-height:1.1;
+  max-width:960px;margin-bottom:24px;
+  animation:fadeUp .7s ease both;
+}
+.hero-sub{
+  font-size:16px;color:var(--muted);line-height:1.7;
+  max-width:680px;margin-bottom:40px;
+  animation:fadeUp .7s ease .1s both;
+}
+.meta-chips{
+  display:flex;flex-wrap:wrap;gap:10px;margin-bottom:64px;
+  animation:fadeUp .7s ease .18s both;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 18px;border-radius:100px;background:var(--card);
+  font-size:13px;
+}
+.chip-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.chip-v{font-weight:700}
+.hero-cover{animation:fadeUp .8s ease .26s both}
+
+/* ── DATA GRID ── */
+.data-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px;max-width:680px}
+.data-cell{
+  background:var(--bg);border-radius:var(--r);padding:32px 36px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.data-cell:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(20,20,30,.08)}
+.data-lbl{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.data-nums{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.data-before{font-size:40px;font-weight:800;letter-spacing:-.03em}
+.data-arr{font-size:18px;font-weight:700;color:var(--muted)}
+.data-after{font-size:40px;font-weight:800;letter-spacing:-.03em;opacity:.45}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+
+/* ── GRID 3 ── */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.g3-pad{padding:32px}
+.g3-num{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:12px}
+.g3-emoji{font-size:20px;margin-bottom:12px;display:block}
+.g3-title{font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px}
+.g3-body{font-size:14.5px;color:var(--muted);line-height:1.65}
+
+/* ── FROM → TO ── */
+.reframe-flow{display:flex;align-items:center;margin-top:40px;max-width:820px}
+.rf-from{flex:0 0 auto;max-width:42%;padding:24px 24px 24px 0}
+.rf-line{flex:1;border-bottom:2px dashed var(--border);margin:0 8px;position:relative}
+.rf-line::after{content:'';position:absolute;right:-6px;top:-6px;width:11px;height:11px;border-radius:50%;background:var(--olive)}
+.rf-to{flex:0 0 50%;background:#fff;border-radius:var(--r);padding:28px 32px}
+.rf-lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+.rf-from .rf-lbl{color:var(--muted)}
+.rf-to .rf-lbl{color:var(--olive)}
+.rf-from-txt{font-size:16px;font-weight:500;color:var(--muted);line-height:1.5}
+.rf-to-txt{font-size:17px;font-weight:500;color:var(--text);line-height:1.55}
+.rf-to-txt strong{font-weight:700}
+@media(max-width:960px){
+  .rf-to{flex:1 1 auto !important;min-width:0}
+}
+@media(max-width:700px){
+  .reframe-flow{flex-direction:column;align-items:stretch;max-width:100% !important}
+  .rf-from{padding:0 0 4px;max-width:none}
+  .rf-line{
+    flex:none;
+    border-bottom:none;
+    border-left:2px dashed var(--border);
+    height:28px;width:0;
+    margin:8px 0 8px 10px;
+  }
+  .rf-line::after{
+    right:auto;left:-6px;
+    top:auto;bottom:-6px;
+  }
+  .rf-to{flex:auto !important;max-width:100% !important}
+}
+
+/* ── FLOW STEPS ── */
+.flow-wrap{margin-top:64px}
+.flow-eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;display:block}
+.flow-desc{font-size:16px;color:var(--muted);line-height:1.7;margin-bottom:32px;max-width:580px}
+.flow-steps{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  background:var(--card);border-radius:var(--r);overflow:hidden;
+}
+section.alt .flow-steps{background:var(--bg)}
+.fstep{padding:28px 16px;text-align:center;position:relative}
+.fstep + .fstep::before{
+  content:'';position:absolute;
+  left:0;top:20%;height:60%;width:1px;background:var(--border);
+}
+.fstep-num{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:6px}
+.fstep-name{font-size:13px;font-weight:700;line-height:1.3}
+
+/* ── FEATURES ── */
+.feat{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:center;padding:80px 0;
+}
+.feat:not(:last-child){padding-bottom:80px}
+.feat.rev .feat-img{order:2}
+.feat-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:block}
+.feat-heading{font-size:clamp(18px,1.8vw,24px);font-weight:800;letter-spacing:-.025em;line-height:1.25;margin-bottom:20px}
+.feat-why{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.feat-points{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.feat-point{display:flex;align-items:flex-start;gap:10px}
+.feat-point .feat-dot{margin-top:8px}
+.feat-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.feat-callout{
+  background:var(--card);border-radius:22px;padding:20px 24px;
+  font-size:14px;font-style:italic;color:var(--muted);line-height:1.65;
+}
+section.alt .feat-callout{background:var(--bg)}
+
+/* ── PREMIUM ── */
+.premium-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;max-width:580px}
+.premium-card{
+  padding:24px 28px;border-radius:16px;background:var(--card);
+  font-size:15px;font-weight:700;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.premium-card:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(20,20,30,.08)}
+
+/* ── FINAL EXPERIENCE ── */
+.final-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:40px}
+.final-num{font-size:11px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:10px;display:block}
+.final-ph{border-radius:16px;margin-bottom:14px;aspect-ratio:390/844;width:100%}
+.final-label{font-size:14px;font-weight:700;line-height:1.35}
+.final-callout{
+  margin-top:48px;
+}
+.final-callout p{font-size:20px;font-weight:400;font-style:normal;color:var(--text);line-height:1.5}
+
+/* ── REFLECTION ── */
+.takeaways{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.takeaway{padding:28px 32px}
+
+/* ── BACK LINK ── */
+.back-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:600;color:var(--muted);
+  transition:color .2s,gap .22s var(--ease);
+}
+.back-link:hover{color:var(--text);gap:14px}
+
+/* ── FOOTER ── */
+.footer{
+  padding:32px 48px;border-top:1px solid var(--border);
+  text-align:center;font-size:13px;color:var(--muted);letter-spacing:.02em;
+}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(22px)}
+  to{opacity:1;transform:none}
+}
+
+/* ── INSIGHT COLS ── */
+.insight-cols{display:grid;grid-template-columns:2fr 3fr;gap:64px;align-items:start;margin-top:40px}
+.insight-bold{font-size:15px;font-weight:700;line-height:1.6;margin:16px 0 12px}
+.insight-dot-list{display:flex;flex-direction:column;gap:8px}
+.insight-dot-item{display:flex;align-items:center;gap:10px;font-size:14.5px;color:var(--muted)}
+/* ── DATA TABLE ── */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0 4px}
+.data-table th{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:8px 0;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th:last-child,.data-table td:last-child{text-align:right}
+.data-table td{padding:10px 0;font-size:14px;font-weight:600;border-bottom:1px solid var(--border)}
+.chart-caption{font-size:12px;color:var(--muted);font-style:italic;margin-top:6px}
+/* ── FINDING ── */
+.finding{margin-bottom:36px}
+.finding-num{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:6px}
+.finding-title{font-size:15px;font-weight:700;margin-bottom:8px;line-height:1.4}
+.source-line{font-size:11.5px;color:var(--muted);font-style:italic;margin-top:10px}
+/* ── DD STRUCTURE ── */
+.dd-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.dd-lbl.ins{color:var(--blue)}
+.dd-lbl.res{color:var(--olive)}
+.dd-sep{font-size:14px;color:var(--muted);margin:10px 0;display:block;text-align:center}
+.dd-txt{font-size:14px;line-height:1.65;color:var(--muted)}
+/* ── FLOW DESC ── */
+.fstep-desc{font-size:10.5px;color:var(--muted);line-height:1.5;margin-top:5px}
+.flow-caption{font-size:13px;color:var(--muted);font-style:italic;text-align:center;margin-top:16px}
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-inner,.wrap{padding-left:28px;padding-right:28px}
+  .grid3{grid-template-columns:1fr}
+  .feat{grid-template-columns:1fr;gap:40px}
+  .feat.rev .feat-img{order:0}
+  .final-grid{grid-template-columns:repeat(2,1fr)}
+  .data-grid{grid-template-columns:1fr}
+  .insight-cols{grid-template-columns:1fr}
+  .two-col{grid-template-columns:1fr}
+  .takeaways{grid-template-columns:1fr}
+  .premium-grid{grid-template-columns:1fr;max-width:100%}
+  .flow-steps{grid-template-columns:repeat(3,1fr)}
+  .fstep:nth-child(4)::before{display:none}
+}
+@media(max-width:600px){
+  .brk{display:none}
+  .nav-links{gap:20px}
+  .meta-chips{gap:8px}
+  .flow-steps{grid-template-columns:1fr}
+  .fstep::before{display:none !important}
+  .final-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .nav-inner,.wrap{padding-left:20px;padding-right:20px}
+  section{padding:60px 0}
+  [style*="grid-template-columns"]{grid-template-columns:1fr !important;gap:20px !important}
+  [style*="display:flex;align-items:flex-start"]{flex-wrap:wrap !important}
+  .final-grid{grid-template-columns:1fr 1fr !important}
+  .feat{gap:28px}
+  .footer{padding:24px 20px}
+}
+
+/* ── SIDE NAV ── */
+.side-nav{position:fixed;left:28px;top:90px;z-index:90;opacity:0;transition:opacity .4s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.side-nav.visible{opacity:1;pointer-events:all}
+.side-nav-back{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--muted);text-decoration:none;margin-bottom:18px;letter-spacing:.01em;transition:color .2s}
+.side-nav-back:hover{color:var(--text)}
+.side-nav-links{display:flex;flex-direction:column;gap:6px;position:relative;padding-left:16px}
+.side-nav-links::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:3px;background:var(--card);border-radius:3px}
+.side-nav-fill{position:absolute;left:0;top:0;width:3px;height:0;background:linear-gradient(180deg,#C4D5EC 0%,#B0C6E1 35%,#98AD57 100%);border-radius:3px;transition:height .35s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.side-nav-link{font-size:11.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:4px 0;transition:color .2s;line-height:1.4;letter-spacing:.005em;white-space:nowrap}
+.side-nav-link:hover{color:var(--text)}
+.side-nav-link.active{color:var(--text);font-weight:700}
+@media(max-width:1340px){.side-nav{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="yoonbin.">
+      <img src="images/logo/logo-3-ring-period.png" alt="yoonbin." style="height:80px;width:auto;display:block;margin-left:-23px">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Work</a></li>
+      <li><a href="index.html#play">Play</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="side-nav" id="sideNav">
+  <div class="side-nav-links">
+    <span class="side-nav-fill" id="navFill"></span>
+    <a href="#problem" class="side-nav-link">The Problem</a>
+    <a href="#insight" class="side-nav-link">Key Insight</a>
+    <a href="#solution" class="side-nav-link">Solution</a>
+    <a href="#decisions" class="side-nav-link">Design Decisions</a>
+    <a href="#features" class="side-nav-link">Features</a>
+    <a href="#final" class="side-nav-link">Final Experience</a>
+    <a href="#reflection" class="side-nav-link">Reflection</a>
+  </div>
+</nav>
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="wrap">
+    <h1 class="hero-title">Meet through moments,<br>not just matches.</h1>
+    <p class="hero-sub">A group activity-based Bumble experience that helps users move from digital matching to safer, more natural in-person connection.</p>
+    <div class="meta-chips">
+      <span class="chip"><span class="chip-k">ROLE</span><span class="chip-v">UI/UX Design · Interaction Design · Prototyping</span></span>
+      <span class="chip"><span class="chip-k">Team</span><span class="chip-v">Solo · Class Project</span></span>
+      <span class="chip"><span class="chip-k">Timeline</span><span class="chip-v">Jan – Mar 2025</span></span>
+      <span class="chip"><span class="chip-k">Tools</span><span class="chip-v">Figma</span></span>
+    </div>
+    <div class="hero-cover" style="width:100%;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden">
+      <img src="images/Bumble cover.png" alt="Bumble IRL Cover" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1);transition:transform .6s var(--ease)" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+    </div>
+  </div>
+</section>
+
+<!-- ══ THE PROBLEM ══ -->
+<section class="alt" id="problem">
+  <div class="wrap">
+    <span class="lbl">The Problem</span>
+    <h2 class="h2">"Someone is nearby"<br class="brk"> was not enough reason to meet.</h2>
+    <p class="body">I was given a brief to explore how precision location could drive premium growth — but research revealed the real barrier wasn't visibility. It was motivation, safety, and social comfort.</p>
+
+    <div class="grid3">
+      <div style="background:#FFFFFF;border-radius:22px;padding:32px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px">Original Brief</div>
+        <p class="g3-body">Use precise location to notify users when a compatible match was physically nearby across mobile, desktop, and Apple Watch (within 0.5 km).</p>
+      </div>
+      <div style="background:#FFFFFF;border-radius:22px;padding:32px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px">Business Goals</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="g3-body" style="display:flex;gap:9px"><span style="width:5px;height:5px;border-radius:50%;background:var(--muted);flex-shrink:0;margin-top:8px"></span>Encourage premium upgrades</div>
+          <div class="g3-body" style="display:flex;gap:9px"><span style="width:5px;height:5px;border-radius:50%;background:var(--muted);flex-shrink:0;margin-top:8px"></span>Increase location opt-in</div>
+          <div class="g3-body" style="display:flex;gap:9px"><span style="width:5px;height:5px;border-radius:50%;background:var(--muted);flex-shrink:0;margin-top:8px"></span>Deliver cross-platform proximity notifications</div>
+          <div class="g3-body" style="display:flex;gap:9px"><span style="width:5px;height:5px;border-radius:50%;background:var(--muted);flex-shrink:0;margin-top:8px"></span>Drive real-time engagement</div>
+        </div>
+      </div>
+      <div style="background:#FFFFFF;border-radius:22px;padding:32px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px">Underlying Assumption</div>
+        <p class="g3-body" style="font-style:italic">"If users knew a match was nearby, they would be more likely to engage — and ultimately convert to premium."</p>
+      </div>
+    </div>
+
+    <div style="margin-top:64px">
+      <h3 style="font-size:18px;font-weight:700;letter-spacing:-.015em;margin-bottom:32px">What I Found Problematic</h3>
+      <div style="display:flex;flex-direction:column;gap:32px">
+        <div style="display:flex;gap:20px">
+          <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">01</span>
+          <div>
+            <div class="g3-title" style="margin-bottom:4px">Proximity alone didn't sustain engagement</div>
+            <p class="g3-body">Usage declined after initial curiosity. Awareness didn't translate into action.</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:20px">
+          <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">02</span>
+          <div>
+            <div class="g3-title" style="margin-bottom:4px">Notifications were passive, not actionable</div>
+            <p class="g3-body">Users had no clear reason to act. "Why now? Is this the right moment?"</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:20px">
+          <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">03</span>
+          <div>
+            <div class="g3-title" style="margin-bottom:4px">Precise location increased emotional friction</div>
+            <p class="g3-body">Real-time visibility felt vulnerable in dating contexts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:64px;font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.4;color:var(--text)">"The bigger issue was not distance. It was motivation, safety, and social comfort."</p>
+  </div>
+</section>
+
+<!-- ══ KEY INSIGHT ══ -->
+<section id="insight">
+  <div class="wrap">
+    <span class="lbl">Key Insight</span>
+    <h2 class="h2" style="max-width:920px">Shared context created stronger engagement<br class="brk"> than physical distance alone.</h2>
+    <p class="body">Nearby match alerts created awareness, but not enough motivation to act.</p>
+
+    <!-- Stat cards -->
+    <div class="data-grid">
+      <div class="card" style="padding:32px 36px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Proximity Alert</div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+          <span style="font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1">12.27%</span>
+          <span style="font-size:18px;font-weight:700;color:var(--muted)">→</span>
+          <span style="font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1;opacity:.35">8.29%</span>
+        </div>
+        <div style="font-size:13px;color:var(--muted);margin-top:12px">Engagement decline over 6 months</div>
+      </div>
+      <div class="card" style="padding:32px 36px">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Map Integration</div>
+        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+          <span style="font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1">25.17%</span>
+          <span style="font-size:18px;font-weight:700;color:var(--muted)">→</span>
+          <span style="font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1;opacity:.35">16.27%</span>
+        </div>
+        <div style="font-size:13px;color:var(--muted);margin-top:12px">Engagement decline over 6 months</div>
+      </div>
+    </div>
+
+    <!-- Findings list -->
+    <div style="display:flex;flex-direction:column;gap:32px;margin-top:64px">
+      <div style="display:flex;gap:20px">
+        <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">01</span>
+        <div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.4">Proximity-based engagement declined over time</div>
+          <p class="g3-body">Initial curiosity did not translate into sustained interaction. Awareness of a nearby match did not drive repeated behavior.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:20px">
+        <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">02</span>
+        <div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.4">Context-driven interaction performed better</div>
+          <p class="g3-body">Map integration consistently outperformed proximity alerts across CTR, interaction rate, conversion, and retention. Users responded more positively when interaction was tied to contextual information.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:20px">
+        <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">03</span>
+        <div>
+          <div style="font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.4">Emotional comfort influenced willingness to meet</div>
+          <p class="g3-body">Secondary research on location-sharing behavior suggested users were more hesitant when interaction felt overly exposed or lacking social context.</p>
+          <p class="source-line" style="margin-top:8px">Barkhuus et al., 2015 · Forbes Health, 2024</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOLUTION ══ -->
+<section class="alt" id="solution">
+  <div class="wrap">
+    <span class="lbl">Solution</span>
+    <h2 class="h2">I shifted Bumble from proximity alerts<br class="brk"> to shared activity-based moments.</h2>
+
+    <!-- FROM / TO mockups with center arrow -->
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:28px;margin-top:40px">
+
+      <!-- FROM -->
+      <div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">From</div>
+        <img src="images/from.png" alt="Proximity Alerts" style="width:400px;max-width:100%;display:block;border-radius:var(--r)">
+        <p style="font-size:14px;font-style:italic;color:var(--muted);margin-top:12px">"Someone is nearby"</p>
+      </div>
+
+      <!-- CENTER ARROW -->
+      <div style="display:flex;justify-content:center;padding-top:26px">
+        <span style="font-size:32px;font-weight:800;color:var(--blue)">→</span>
+      </div>
+
+      <!-- TO -->
+      <div style="background:rgba(152,173,87,.14);border-radius:var(--r);padding:28px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--olive);margin-bottom:12px">To</div>
+        <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:32px">
+          <div style="flex-shrink:0;min-width:0">
+            <img src="images/01.png" alt="Shared activity-based moments — events screen" style="width:210px;max-width:100%;display:block;border-radius:var(--r)">
+            <p style="font-size:14px;font-style:italic;color:var(--muted);margin-top:12px">"Here's a shared reason to connect"</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0"></span>Shared Public Events</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0"></span>Contextual Interaction</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0"></span>Lower-pressure meetup flow</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REFRAMED PROBLEM -->
+    <div style="margin-top:48px">
+      <span style="display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px">Reframed Problem</span>
+      <div class="reframe-flow" style="margin-top:0;max-width:1016px">
+        <div class="rf-from">
+          <div class="rf-lbl">From</div>
+          <div class="rf-from-txt">"How can we get users to meet faster?"</div>
+        </div>
+        <div class="rf-line" style="flex:1"></div>
+        <div class="rf-to" style="flex:0 0 530px">
+          <div class="rf-lbl">To</div>
+          <div class="rf-to-txt">"How can we lower the <strong>pressure of meeting</strong> by<br class="brk"> giving users a <strong>shared reason to connect</strong>?"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DESIGN DECISIONS ══ -->
+<section id="decisions">
+  <div class="wrap">
+    <span class="lbl">Design Decisions</span>
+    <h2 class="h2">Reducing emotional friction<br class="brk"> became the core design principle.</h2>
+    <div class="grid3">
+      <div class="card g3-pad">
+        <div class="dd-lbl ins">Insight</div>
+        <p class="dd-txt">Users spend significant time in low-value messaging before determining compatibility.</p>
+        <span class="dd-sep">↓</span>
+        <div class="dd-lbl res">Design Response</div>
+        <p class="dd-txt">Shared activity cards help users assess compatibility through real-world context instead of prolonged conversation.</p>
+      </div>
+      <div class="card g3-pad">
+        <div class="dd-lbl ins">Insight</div>
+        <p class="dd-txt">Real-time location visibility increased feelings of vulnerability.</p>
+        <span class="dd-sep">↓</span>
+        <div class="dd-lbl res">Design Response</div>
+        <p class="dd-txt">Structured public events and visibility controls create a safer and more comfortable meetup environment.</p>
+      </div>
+      <div class="card g3-pad">
+        <div class="dd-lbl ins">Insight</div>
+        <p class="dd-txt">Users engaged more when interaction occurred within shared context rather than passive proximity.</p>
+        <span class="dd-sep">↓</span>
+        <div class="dd-lbl res">Design Response</div>
+        <p class="dd-txt">Mutual event participation creates a more intentional and natural path toward meeting.</p>
+      </div>
+    </div>
+
+    <div class="flow-wrap">
+      <span class="flow-eyebrow">New Experience Flow</span>
+      <p class="flow-desc">Meeting became a gradual shared experience — not a high-pressure decision.</p>
+      <div class="flow-steps">
+        <div class="fstep">
+          <div class="fstep-num">01</div>
+          <div class="fstep-name">Browse Events</div>
+          <div class="fstep-desc">Discover events based on your interests, location, and vibe.</div>
+        </div>
+        <div class="fstep">
+          <div class="fstep-num">02</div>
+          <div class="fstep-name">View Event Context</div>
+          <div class="fstep-desc">See event details and which of your matches are interested.</div>
+        </div>
+        <div class="fstep">
+          <div class="fstep-num">03</div>
+          <div class="fstep-name">Express Interest</div>
+          <div class="fstep-desc">Show interest or RSVP directly.</div>
+        </div>
+        <div class="fstep">
+          <div class="fstep-num">04</div>
+          <div class="fstep-name">Mutual Invite Prompt</div>
+          <div class="fstep-desc">When both you and your match are interested, Bumble prompts an invite.</div>
+        </div>
+        <div class="fstep">
+          <div class="fstep-num">05</div>
+          <div class="fstep-name">Attend Together</div>
+          <div class="fstep-desc">Enjoy the event in a safe, shared environment.</div>
+        </div>
+        <div class="fstep">
+          <div class="fstep-num">06</div>
+          <div class="fstep-name">Post-Event Reconnect</div>
+          <div class="fstep-desc">Privately choose who you want to reconnect with.</div>
+        </div>
+      </div>
+      <p class="flow-caption">Every step reduces pressure and builds comfort, making meeting feel natural and intentional.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section class="alt" id="features">
+  <div class="wrap">
+    <span class="lbl">Features</span>
+
+    <!-- Feature 1: image left, text right -->
+    <div class="feat">
+      <div class="feat-img">
+        <div style="overflow:hidden;border-radius:var(--r);max-width:320px;margin:0 auto;aspect-ratio:719/1435;background:var(--ph)"><img data-src="images/feature1.gif" alt="Activity Cards UI" style="width:100%;display:block"></div>
+      </div>
+      <div class="feat-copy">
+        <span class="feat-eyebrow">Feature 01</span>
+        <h3 class="feat-heading">Activity cards made meeting feel more approachable.</h3>
+        <div class="feat-points">
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Familiar Swipe Interaction</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Leverages an existing, intuitive pattern to reduce learning curve</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Lower-pressure meetup flow</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Focus shifts from profiles to shared experience</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Contextual activity discovery</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Quickly assess activity, location, time, and attendees</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Reduced planning friction</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Gives users a natural reason to engage</div></div></div>
+        </div>
+        <div class="feat-callout">"Activity cards helped users imagine the meetup before making a move."</div>
+      </div>
+    </div>
+
+    <!-- Feature 2: text left, image right -->
+    <div class="feat rev">
+      <div class="feat-img">
+        <div style="overflow:hidden;border-radius:var(--r);max-width:320px;margin:0 auto;aspect-ratio:719/1435;background:var(--ph)"><img data-src="images/feature2.gif" alt="Semi-Anonymous Mode UI" style="width:100%;display:block"></div>
+      </div>
+      <div class="feat-copy">
+        <span class="feat-eyebrow">Feature 02</span>
+        <h3 class="feat-heading">Semi-anonymous mode gave users more control before meeting.</h3>
+        <div class="feat-points">
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Reduced perceived vulnerability</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Users share what they're comfortable with</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Increased emotional comfort</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Helps users feel safer in early interactions</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">More control before engagement</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Control builds confidence and encourages participation</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature 3: image left, text right -->
+    <div class="feat">
+      <div class="feat-img">
+        <div style="overflow:hidden;border-radius:var(--r);max-width:320px;margin:0 auto;aspect-ratio:719/1435;background:var(--ph)"><img data-src="images/feature3.gif" alt="Mutual Invite UI" style="width:100%;display:block"></div>
+      </div>
+      <div class="feat-copy">
+        <span class="feat-eyebrow">Feature 03</span>
+        <h3 class="feat-heading">Mutual invites reduced the awkwardness of initiating.</h3>
+        <div class="feat-points">
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Contextual prompting</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">The invite is tied to a specific activity, so users have a clear reason to meet.</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Shared interest trigger</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Bumble suggests the invite only when both matches are interested in the same event.</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Reduced initial pressure</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">The system creates the opening, so one person doesn't have to force the first step.</div></div></div>
+        </div>
+        <div class="feat-callout">"Shared interest made the invite feel like a natural next step."</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PREMIUM FEATURE ══ -->
+<section id="premium">
+  <div class="wrap">
+    <span class="lbl">Premium Feature</span>
+    <h2 class="h2">AI-powered recommendations<br class="brk"> created a clearer premium value.</h2>
+    <div style="display:grid;grid-template-columns:11fr 9fr;gap:80px;align-items:start;margin-top:40px">
+
+      <!-- LEFT 55% -->
+      <div>
+        <p class="body" style="margin-bottom:28px">Premium users receive AI-curated event recommendations based on their interests, past event behavior, attendee compatibility, and optional external signals like Spotify or Goodreads. Instead of showing nearby events only, Bumble IRL helps users understand <strong>why an event is personally and socially relevant</strong> before they commit.</p>
+        <div class="feat-points">
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Personal relevance</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">AI recommends events based on your interests, preference filters, and past event history</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Social compatibility</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">See compatibility with attendees, including a visible % match score</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Premium signals</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Optional integrations like Spotify, Goodreads for richer recommendations</div></div></div>
+          <div class="feat-point"><span class="feat-dot"></span><div><div style="font-weight:600">Business Value</div><div style="font-size:13.5px;color:var(--muted);margin-top:2px;line-height:1.5">Smarter recommendations make premium feel more useful, driving upgrades and engagement</div></div></div>
+        </div>
+      </div>
+
+      <!-- RIGHT 45% -->
+      <div>
+        <div style="overflow:hidden;border-radius:var(--r);max-width:320px;margin:0 auto;aspect-ratio:719/1435;background:var(--ph)"><img data-src="images/premium.gif" alt="AI Recommendations UI" style="width:100%;display:block"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ DESIGN SYSTEM ══ -->
+<section class="alt" id="design-system">
+  <div class="wrap">
+    <span class="lbl">Design System</span>
+    <h2 class="h2">I extended Bumble's visual language<br class="brk"> for event-based interaction.</h2>
+    <p class="body" style="margin-bottom:48px">I built a component system for activity cards, invite prompts, safety indicators, visibility controls, and post-event connection states — balancing Bumble's playful identity with clarity, trust, and user control.</p>
+    <img src="images/Design Systems.png" alt="Design System Components" style="width:100%;display:block;border-radius:var(--r)">
+  </div>
+</section>
+
+<!-- ══ FINAL EXPERIENCE ══ -->
+<section id="final">
+  <div class="wrap">
+    <span class="lbl">Final Experience</span>
+    <h2 class="h2">Shared experience became<br class="brk"> the foundation for connection.</h2>
+    <p class="body">After participating in an event, users privately select who they want to reconnect with through a <strong>'Tap to Connect'</strong> interaction. Only <strong>mutual interest</strong> opens a private conversation, shifting the foundation of matching from <strong>profile-first attraction</strong> to <strong>shared real-world experience</strong>.</p>
+    <div class="final-grid" style="margin-top:40px;grid-template-columns:repeat(4,1fr)">
+      <div>
+        <span class="final-num">01</span>
+        <img src="images/01.png" alt="Attend the event" class="final-ph" style="width:100%;display:block;object-fit:contain">
+        <div class="final-label">Attend the event</div>
+      </div>
+      <div>
+        <span class="final-num">02</span>
+        <img src="images/02.png" alt="Review your experience" class="final-ph" style="width:100%;display:block;object-fit:contain">
+        <div class="final-label">Review your experience</div>
+      </div>
+      <div>
+        <span class="final-num">03</span>
+        <img src="images/03.png" alt="Select who to reconnect with" class="final-ph" style="width:100%;display:block;object-fit:contain">
+        <div class="final-label">Select who to reconnect with</div>
+      </div>
+      <div>
+        <span class="final-num">04</span>
+        <img src="images/04.png" alt="It's a mutual match" class="final-ph" style="width:100%;display:block;object-fit:contain">
+        <div class="final-label">It's a mutual match</div>
+      </div>
+    </div>
+    <div class="final-callout">
+      <p>"The experience remains <strong>valuable even without a romantic match.</strong><br>You still enjoy the event, make memories, and leave with <strong>meaningful social value.</strong>"</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REFLECTION ══ -->
+<section class="alt" id="reflection">
+  <div class="wrap">
+    <span class="lbl">Reflection</span>
+    <h2 class="h2">Good design starts<br class="brk"> by questioning the brief.</h2>
+    <p class="body">The original direction focused on making nearby matches more visible through precision location. But through research, I found that <strong>visibility alone did not create meaningful interaction</strong>.<br class="brk"> The deeper problem was <strong>emotional hesitation</strong>: users needed safety, context, and a more natural reason to meet. Reframing the brief around that hesitation, instead of solving it as written, shaped every design decision that followed.</p>
+    <div style="display:flex;flex-direction:column;gap:32px;margin-top:40px">
+      <div style="display:flex;gap:20px">
+        <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">01</span>
+        <div>
+          <div class="g3-title" style="margin-bottom:4px">Question assumptions</div>
+          <p class="g3-body">The most impactful solutions often start by challenging the original problem framing</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:20px">
+        <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">02</span>
+        <div>
+          <div class="g3-title" style="margin-bottom:4px">Let research lead</div>
+          <p class="g3-body">Behavioral data and user insights revealed the real barriers to connection</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:20px">
+        <span style="font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;flex-shrink:0;min-width:20px;padding-top:2px">03</span>
+        <div>
+          <div class="g3-title" style="margin-bottom:4px">Design for human need</div>
+          <p class="g3-body">Emotional comfort, safety, and context drive real-world interaction</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BACK TO WORK ══ -->
+<div class="wrap">
+  <div style="padding:64px 0 96px">
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back to Work
+    </a>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  © 2026 Yoonbin Alicia Kim. Designed with care.
+</footer>
+
+<script>
+/* ── GIF start on viewport entry ── */
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.src = e.target.dataset.src;
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('img[data-src]').forEach(function(img) {
+    io.observe(img);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var nav = document.getElementById('sideNav');
+  var hero = document.getElementById('hero');
+  if(!nav||!hero) return;
+  function updateNavVisibility(){
+    nav.classList.toggle('visible', window.scrollY > 200);
+  }
+  window.addEventListener('scroll', updateNavVisibility, {passive:true});
+  updateNavVisibility();
+  var links = nav.querySelectorAll('.side-nav-link');
+  var sections = Array.from(links).map(function(l){
+    return document.querySelector(l.getAttribute('href'));
+  }).filter(Boolean);
+  var fill = document.getElementById('navFill');
+  var activeLink = null;
+  function setFill(link){
+    if(!fill||!link) return;
+    fill.style.height = (link.offsetTop + link.offsetHeight) + 'px';
+  }
+  var secObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){l.classList.remove('active')});
+        var a = nav.querySelector('[href="#'+e.target.id+'"]');
+        if(a){ a.classList.add('active'); activeLink = a; setFill(a); }
+      }
+    });
+  },{rootMargin:'-15% 0px -70% 0px',threshold:0});
+  sections.forEach(function(s){secObs.observe(s)});
+  window.addEventListener('resize', function(){ setFill(activeLink); }, {passive:true});
+})();
+</script>
+
+</body>
+</html>

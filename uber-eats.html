@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Uber Eats Renewal — Yoonbin Alicia Kim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#B0C6E1;
+  --olive:#98AD57;
+  --bg:#FAFAF8;
+  --text:#1a1a1a;
+  --muted:#7a7a72;
+  --border:#e2e0da;
+  --card:#F2F2F0;
+  --alt:#F4F2EE;
+  --ph:#E2DEDA;
+  --r:22px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+html{scroll-behavior:smooth;overflow-x:clip;width:100%}
+body{font-family:'Manrope',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:clip;width:100%}
+img,video,svg,iframe{max-width:100%;height:auto}
+.nav-logo img{height:80px;width:auto;max-width:none}
+*{cursor:-webkit-image-set(url('images/logo/d_cursor%201.png') 1x,url('images/logo/d_cursor@2x.png') 2x) 19 19,image-set(url('images/logo/d_cursor%201.png') 1x,url('images/logo/d_cursor@2x.png') 2x) 19 19,auto}
+
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:inline-flex;align-items:center;font-size:20px;font-weight:700;letter-spacing:-.03em;line-height:1;user-select:none;transition:opacity .2s}
+.nav-logo:hover{transform:scale(.96)}
+.nl-y{color:var(--blue)}
+.nl-oo{display:inline-flex;align-items:center;margin:0 .5px}
+.nl-rest{color:#7A9EBF}
+.logo-svg{display:block;flex-shrink:0}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);letter-spacing:.01em;transition:color .2s,font-weight .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--text);font-weight:700}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+section{padding:96px 0}
+section.alt{background:var(--alt)}
+
+/* ── LABEL / HEADING / BODY ── */
+.lbl{display:block;font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
+.h2{font-size:clamp(22px,2.8vw,36px);font-weight:800;letter-spacing:-.03em;line-height:1.2;margin-bottom:24px;max-width:760px}
+.body{font-size:16px;color:var(--muted);line-height:1.7;max-width:720px}
+
+/* ── CARD ── */
+.card{background:var(--card);border-radius:var(--r);transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(20,20,30,.08)}
+section.alt .card{background:var(--bg)}
+
+/* ── HERO ── */
+.hero-title{font-size:clamp(32px,4.5vw,64px);font-weight:800;letter-spacing:-.035em;line-height:1.1;max-width:960px;margin-bottom:24px;animation:fadeUp .7s ease both}
+.hero-sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:680px;margin-bottom:40px;animation:fadeUp .7s ease .1s both}
+.meta-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:64px;animation:fadeUp .7s ease .18s both}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;background:var(--card);font-size:13px}
+.chip-k{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.chip-v{font-weight:700}
+.hero-cover{animation:fadeUp .8s ease .26s both}
+
+/* ── STAT HERO ── */
+.stat-callout{background:var(--card);border-radius:28px;padding:64px;text-align:center;margin-top:40px}
+section.alt .stat-callout{background:var(--bg)}
+.stat-big{font-size:clamp(56px,8vw,96px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.stat-desc{font-size:18px;color:var(--muted);margin-top:16px}
+.stat-note{font-size:13px;color:var(--muted);font-style:italic;margin-top:8px}
+
+/* ── BAR CHART ── */
+.bar-chart{margin-top:48px}
+.bar-chart-title{font-size:15px;font-weight:700;margin-bottom:24px}
+.bar-row{display:flex;align-items:center;gap:16px;margin-bottom:10px}
+.bar-label{font-size:13px;font-weight:600;width:260px;flex-shrink:0;line-height:1.35;color:var(--text)}
+.bar-track{flex:1;height:34px;background:var(--card);border-radius:8px;overflow:hidden}
+section.alt .bar-track{background:var(--alt)}
+.bar-fill{height:100%;border-radius:8px;animation:growBar .9s var(--ease) forwards;width:0}
+.bar-fill.hi{background:var(--blue)}
+.bar-fill.lo{background:var(--border)}
+.bar-pct{font-size:13px;font-weight:700;width:36px;text-align:right;flex-shrink:0;color:var(--muted)}
+.bar-pct.hi{color:var(--text)}
+.bar-caption{font-size:12px;color:var(--muted);font-style:italic;margin-top:14px}
+@keyframes growBar{to{width:var(--w)}}
+
+/* ── GRID 3 ── */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.g3-pad{padding:32px}
+.g3-num{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:12px}
+.g3-title{font-size:15px;font-weight:700;line-height:1.4;margin-bottom:8px}
+.g3-body{font-size:14.5px;color:var(--muted);line-height:1.65}
+
+/* ── TWO COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+
+/* ── DOT LIST ── */
+.dot-list{display:flex;flex-direction:column;gap:9px;margin-top:14px}
+.dot-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted);line-height:1.55}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:7px}
+.dot.ol{background:var(--olive)}
+
+/* ── DD STRUCTURE ── */
+.dd-lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.dd-lbl.ins{color:var(--blue)}
+.dd-lbl.res{color:var(--olive)}
+.dd-sep{font-size:13px;color:var(--muted);margin:12px 0;display:block}
+.dd-txt{font-size:13.5px;line-height:1.6;color:var(--muted)}
+
+/* ── PERSONA ── */
+.persona-grid{display:grid;grid-template-columns:1fr 1.8fr;gap:24px;margin-top:40px;align-items:start}
+.persona-card{padding:36px 40px}
+.persona-name{font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.persona-role{font-size:14px;color:var(--muted);margin-bottom:20px}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-size:12px;font-weight:600;color:var(--muted);padding:5px 13px;border-radius:100px;border:1.5px solid var(--border)}
+.persona-quote-card{padding:36px 40px;display:flex;flex-direction:column;justify-content:center}
+.persona-quote{font-size:clamp(17px,1.8vw,22px);font-weight:700;letter-spacing:-.02em;line-height:1.4;font-style:italic;color:var(--text)}
+.persona-frustrations{margin-top:24px}
+.persona-frustrations-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+
+/* ── STRATEGY OVERVIEW CARDS ── */
+.strat-map{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.strat-card{padding:32px}
+.strat-num{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.strat-problem{font-size:14px;font-weight:600;color:var(--muted);line-height:1.4;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.strat-arrow{font-size:18px;font-weight:800;color:var(--blue);margin-bottom:12px;display:block}
+.strat-label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--olive);margin-bottom:8px}
+.strat-title{font-size:15px;font-weight:800;line-height:1.3;margin-bottom:8px}
+.strat-desc{font-size:13.5px;color:var(--muted);line-height:1.6}
+
+/* ── FEATURE ROWS ── */
+.feat-section{padding:64px 0 0}
+.feat-section + .feat-section{padding-top:64px;border-top:1px solid var(--border)}
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.feat.rev .feat-img{order:-1}
+.feat-eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:block}
+.feat-heading{font-size:clamp(18px,1.8vw,24px);font-weight:800;letter-spacing:-.025em;line-height:1.25;margin-bottom:20px}
+.feat-points{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.feat-point{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;line-height:1.6;color:var(--muted)}
+.feat-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0;margin-top:9px;display:block}
+.feat-callout{background:var(--card);border-radius:22px;padding:20px 24px;font-size:14px;font-style:italic;color:var(--muted);line-height:1.65}
+section.alt .feat-callout{background:var(--bg)}
+.feat-img img{width:100%;display:block;border-radius:var(--r)}
+
+/* ── DOC IMAGE ── */
+.doc-img{width:100%;display:block;border-radius:var(--r);margin-top:40px}
+
+/* ── TAKEAWAYS ── */
+.takeaways{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.takeaway{padding:28px 32px}
+.takeaway-num{font-size:12px;font-weight:700;color:var(--blue);letter-spacing:.08em;margin-bottom:12px}
+.takeaway-title{font-size:15px;font-weight:700;margin-bottom:10px;line-height:1.35}
+.takeaway-body{font-size:14px;color:var(--muted);line-height:1.65}
+
+/* ── PHONE MOCKUP ── */
+.mock{aspect-ratio:390/844;border-radius:var(--r);overflow:hidden;box-shadow:0 8px 28px rgba(20,20,30,.10);transition:transform .35s var(--ease),box-shadow .35s var(--ease);position:relative;z-index:1;cursor:zoom-in}
+.mock:hover{transform:scale(1.08);box-shadow:0 24px 64px rgba(20,20,30,.18);z-index:10}
+
+/* ── BACK LINK ── */
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--muted);transition:color .2s,gap .22s var(--ease)}
+.back-link:hover{color:var(--text);gap:14px}
+
+/* ── FOOTER ── */
+.footer{padding:32px 48px;border-top:1px solid var(--border);text-align:center;font-size:13px;color:var(--muted);letter-spacing:.02em}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-inner,.wrap{padding-left:28px;padding-right:28px}
+  .grid3,.strat-map,.takeaways{grid-template-columns:1fr}
+  .two-col,.persona-grid{grid-template-columns:1fr}
+  .feat{grid-template-columns:1fr;gap:40px}
+  .feat.rev .feat-img{order:0}
+  .bar-label{width:160px}
+}
+@media(max-width:600px){
+  .brk{display:none}
+  .nav-links{gap:20px}
+  .meta-chips{gap:8px}
+  .stat-callout{padding:40px 24px}
+
+}
+@media(max-width:480px){
+  .nav-inner,.wrap{padding-left:20px;padding-right:20px}
+  section{padding:60px 0}
+  .hero-title [style*="white-space:nowrap"]{white-space:normal !important}
+  [style*="grid-template-columns"]{grid-template-columns:1fr !important;gap:20px !important}
+  [style*="display:flex;align-items:flex-start"]{flex-wrap:wrap !important}
+  .takeaways{grid-template-columns:1fr !important}
+  .feat{gap:28px}
+  .footer{padding:24px 20px}
+  .mockup-frame{height:auto !important;overflow:hidden !important;max-height:462px}
+  .mockup-frame img{height:auto !important;width:100% !important;max-width:240px;margin:0 auto}
+  .mockup-caption{margin-top:8px !important}
+  [style*="aspect-ratio:unset;height:480px"]{height:auto !important;aspect-ratio:390/844 !important}
+}
+
+/* ── SIDE NAV ── */
+.side-nav{position:fixed;left:28px;top:90px;z-index:90;opacity:0;transition:opacity .4s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.side-nav.visible{opacity:1;pointer-events:all}
+.side-nav-back{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--muted);text-decoration:none;margin-bottom:18px;letter-spacing:.01em;transition:color .2s}
+.side-nav-back:hover{color:var(--text)}
+.side-nav-links{display:flex;flex-direction:column;gap:6px;position:relative;padding-left:16px}
+.side-nav-links::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:3px;background:var(--card);border-radius:3px}
+.side-nav-fill{position:absolute;left:0;top:0;width:3px;height:0;background:linear-gradient(180deg,#C4D5EC 0%,#B0C6E1 35%,#98AD57 100%);border-radius:3px;transition:height .35s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.side-nav-link{font-size:11.5px;font-weight:500;color:var(--muted);text-decoration:none;padding:4px 0;transition:color .2s;line-height:1.4;letter-spacing:.005em;white-space:nowrap}
+.side-nav-link:hover{color:var(--text)}
+.side-nav-link.active{color:var(--text);font-weight:700}
+@media(max-width:1340px){.side-nav{display:none}}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="yoonbin.">
+      <img src="images/logo/logo-3-ring-period.png" alt="yoonbin." style="height:80px;width:auto;display:block;margin-left:-23px">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Work</a></li>
+      <li><a href="index.html#play">Play</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="side-nav" id="sideNav">
+  <div class="side-nav-links">
+    <span class="side-nav-fill" id="navFill"></span>
+    <a href="#overview" class="side-nav-link">Overview</a>
+    <a href="#research" class="side-nav-link">Research</a>
+    <a href="#insight" class="side-nav-link">Key Insight</a>
+    <a href="#persona" class="side-nav-link">Persona</a>
+    <a href="#strategy" class="side-nav-link">UX Strategy</a>
+    <a href="#strategy-01" class="side-nav-link" style="padding-left:12px;font-size:10.5px">01 · Prevention</a>
+    <a href="#strategy-02" class="side-nav-link" style="padding-left:12px;font-size:10.5px">02 · Resolution</a>
+    <a href="#strategy-03" class="side-nav-link" style="padding-left:12px;font-size:10.5px">03 · Navigation</a>
+    <a href="#ui-design" class="side-nav-link">Design System</a>
+    <a href="#reflection" class="side-nav-link">Reflection</a>
+  </div>
+</nav>
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="wrap">
+    <h1 class="hero-title">Fewer delivery mishaps.<br><span style="white-space:nowrap">Prevented early, resolved seamlessly.</span></h1>
+    <p class="hero-sub">A UI/UX redesign of the Uber Eats app — targeting the communication breakdowns, navigation friction, and checkout confusion that left 54.5% of users at neutral satisfaction.</p>
+    <div class="meta-chips">
+      <span class="chip"><span class="chip-k">ROLE</span><span class="chip-v">UX Strategy · UI/UX Design · Product Thinking</span></span>
+      <span class="chip"><span class="chip-k">Team</span><span class="chip-v">Solo · Personal Project</span></span>
+      <span class="chip"><span class="chip-k">Timeline</span><span class="chip-v">Dec 2023 – Feb 2024</span></span>
+      <span class="chip"><span class="chip-k">Tools</span><span class="chip-v">Figma</span></span>
+    </div>
+    <div class="hero-cover" style="width:100%;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden">
+      <img src="images/uber eats/UberEats cover.png" alt="Uber Eats App UI/UX Renewal" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(1);transition:transform .6s var(--ease)" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'">
+    </div>
+  </div>
+</section>
+
+<!-- ══ OVERVIEW ══ -->
+<section class="alt" id="overview">
+  <div class="wrap">
+    <span class="lbl">Overview</span>
+    <h2 class="h2">54.5% of users were only "neutral"<br class="brk"> about their experience.</h2>
+    <p class="body">A survey of 10 Uber Eats users revealed mediocre satisfaction — not because delivery was broken, but because friction at every surrounding step made the experience feel unreliable.</p>
+
+    <!-- Stat + bar chart side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px">
+
+      <!-- Donut chart -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:24px">
+        <svg viewBox="0 0 300 300" width="220" height="220" aria-label="54.5% of users rated experience as neutral">
+          <!-- background track -->
+          <circle cx="150" cy="150" r="100" fill="none" stroke="#e2e0da" stroke-width="52"/>
+          <!-- neutral arc: 54.5% of 628.3 = 342.4, gap = 285.9 -->
+          <circle cx="150" cy="150" r="100" fill="none"
+            stroke="#B0C6E1"
+            stroke-width="52"
+            stroke-dasharray="342.4 285.9"
+            stroke-linecap="round"
+            transform="rotate(-90 150 150)"/>
+          <!-- center text -->
+          <text x="150" y="140" text-anchor="middle" font-family="Manrope,sans-serif" font-size="11" font-weight="700" fill="#7a7a72" letter-spacing="1.5">NEUTRAL</text>
+          <text x="150" y="176" text-anchor="middle" font-family="Manrope,sans-serif" font-size="40" font-weight="800" fill="#1a1a1a">54.5%</text>
+        </svg>
+        <!-- Legend -->
+        <div style="display:flex;flex-direction:column;gap:8px;width:100%;max-width:220px">
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+            <span style="width:12px;height:12px;border-radius:3px;background:#B0C6E1;flex-shrink:0"></span>
+            <span style="font-weight:600">Neutral</span>
+            <span style="color:var(--muted);margin-left:auto">54.5%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;font-size:13px">
+            <span style="width:12px;height:12px;border-radius:3px;background:#e2e0da;flex-shrink:0"></span>
+            <span style="font-weight:600">Satisfied / Dissatisfied</span>
+            <span style="color:var(--muted);margin-left:auto">45.5%</span>
+          </div>
+          <div style="font-size:11px;color:var(--muted);font-style:italic;margin-top:4px">Survey · n=10 · Dec 2023</div>
+        </div>
+      </div>
+
+      <!-- Bar chart -->
+      <div class="bar-chart" style="margin-top:0">
+        <div class="bar-chart-title">What bothered users most?</div>
+        <div class="bar-row">
+          <div class="bar-label">Communication with driver / restaurant</div>
+          <div class="bar-track"><div class="bar-fill hi" style="--w:33%;animation-delay:.05s"></div></div>
+          <div class="bar-pct hi">33%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Category search</div>
+          <div class="bar-track"><div class="bar-fill lo" style="--w:16%;animation-delay:.15s"></div></div>
+          <div class="bar-pct">16%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Random food recommendations</div>
+          <div class="bar-track"><div class="bar-fill lo" style="--w:13%;animation-delay:.25s"></div></div>
+          <div class="bar-pct">13%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Rating service</div>
+          <div class="bar-track"><div class="bar-fill lo" style="--w:12%;animation-delay:.35s"></div></div>
+          <div class="bar-pct">12%</div>
+        </div>
+        <div class="bar-caption">self-reported pain points · multiple choice</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESEARCH ══ -->
+<section id="research">
+  <div class="wrap">
+    <span class="lbl">Research</span>
+    <h2 class="h2">Every complaint traced back to one thing:<br class="brk"> delivery mishaps.</h2>
+    <p class="body">Surveys and interviews made the pattern clear — frustration wasn't scattered. Every friction point users described led back to the same core problem: delivery mishaps, with no way to prevent them and no path to resolve them.</p>
+
+    <!-- Central concept -->
+    <div style="margin-top:48px;background:var(--card);border-radius:28px;padding:48px;text-align:center">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Core Problem</div>
+      <div style="font-size:clamp(28px,3.5vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1.1">Delivery Mishaps</div>
+      <p style="font-size:15px;color:var(--muted);margin-top:16px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.65">Users experience discomfort from delivery mishaps caused by poor communication and complex usability — and need better alternatives when things go wrong.</p>
+    </div>
+
+    <!-- Two causes -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px">
+
+      <!-- Cause 01 -->
+      <div style="display:flex;flex-direction:column;gap:0">
+        <!-- Problem card -->
+        <div style="background:var(--card);border-radius:var(--r);padding:32px 36px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Cause 01</div>
+          <div style="font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin-bottom:18px">Communication with restaurant &amp; driver is difficult</div>
+          <div class="dot-list" style="margin-top:0">
+            <div class="dot-item"><span class="dot"></span><span>Direct communication with the restaurant is not possible</span></div>
+            <div class="dot-item"><span class="dot"></span><span>Contact with the driver ends the moment delivery is complete</span></div>
+          </div>
+        </div>
+        <!-- Connector -->
+        <div style="display:flex;flex-direction:column;align-items:center;padding:4px 0;gap:0">
+          <div style="width:1.5px;height:20px;background:var(--border)"></div>
+          <div style="width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--olive);font-weight:700">↓</div>
+          <div style="width:1.5px;height:20px;background:var(--border)"></div>
+        </div>
+        <!-- Opportunity card -->
+        <div style="background:var(--alt);border-radius:var(--r);padding:32px 36px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:14px">Design Opportunity</div>
+          <div class="dot-list" style="margin-top:0">
+            <div class="dot-item"><span class="dot ol"></span><span>Restaurant review channel after delivery</span></div>
+            <div class="dot-item"><span class="dot ol"></span><span>20-min post-delivery driver contact window</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cause 02 -->
+      <div style="display:flex;flex-direction:column;gap:0">
+        <!-- Problem card -->
+        <div style="background:var(--card);border-radius:var(--r);padding:32px 36px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Cause 02</div>
+          <div style="font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.35;margin-bottom:18px">Accessing the right information &amp; screens is inconvenient</div>
+          <div class="dot-list" style="margin-top:0">
+            <div class="dot-item"><span class="dot"></span><span>Hard to compare which store is nearest</span></div>
+            <div class="dot-item"><span class="dot"></span><span>Can't view all categories at once</span></div>
+            <div class="dot-item"><span class="dot"></span><span>Category classifications are ambiguous</span></div>
+          </div>
+        </div>
+        <!-- Connector -->
+        <div style="display:flex;flex-direction:column;align-items:center;padding:4px 0">
+          <div style="width:1.5px;height:20px;background:var(--border)"></div>
+          <div style="width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--olive);font-weight:700">↓</div>
+          <div style="width:1.5px;height:20px;background:var(--border)"></div>
+        </div>
+        <!-- Opportunity card -->
+        <div style="background:var(--alt);border-radius:var(--r);padding:32px 36px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:14px">Design Opportunity</div>
+          <div class="dot-list" style="margin-top:0">
+            <div class="dot-item"><span class="dot ol"></span><span>Location-based store recommendations</span></div>
+            <div class="dot-item"><span class="dot ol"></span><span>Hierarchical category structure visible at a glance</span></div>
+            <div class="dot-item"><span class="dot ol"></span><span>Main + subcategory tabs on restaurant detail page</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ INSIGHT ══ -->
+<section class="alt" id="insight">
+  <div class="wrap">
+    <span class="lbl">Key Insight</span>
+    <h2 class="h2">Users couldn't reach anyone —<br class="brk"> and couldn't find what they needed.</h2>
+    <p class="body">Digging into the causes revealed a clear pattern: the app was built around completing orders, not around what happens when something goes wrong. Three precise UX failures defined exactly where the design had to step in.</p>
+
+    <!-- Insight rows -->
+    <div style="display:flex;flex-direction:column;gap:2px;margin-top:48px">
+
+      <!-- Row 01 -->
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:0;background:var(--bg);border-radius:var(--r) var(--r) 0 0;overflow:hidden">
+        <div style="padding:36px 40px;border-right:1px solid var(--border)">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:12px">Problem 01</div>
+          <div style="font-size:16px;font-weight:800;letter-spacing:-.02em;line-height:1.4">Key information is hard to reach</div>
+        </div>
+        <div style="padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:4px">Solutions</div>
+          <div class="dot-item"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0;margin-top:7px"></span><span>View all categories at a glance + detailed subcategories on home screen</span></div>
+          <div class="dot-item"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0;margin-top:7px"></span><span>Menu categorization instead of random recommendations</span></div>
+          <div class="dot-item"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0;margin-top:7px"></span><span>Final price always visible in a persistent floating bar — no unnecessary scrolling</span></div>
+        </div>
+      </div>
+
+      <!-- Row 02 -->
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:0;background:var(--bg);overflow:hidden">
+        <div style="padding:36px 40px;border-right:1px solid var(--border)">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:12px">Problem 02</div>
+          <div style="font-size:16px;font-weight:800;letter-spacing:-.02em;line-height:1.4">No real alternative when a mishap occurs</div>
+        </div>
+        <div style="padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:4px">Solutions</div>
+          <div class="dot-item"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0;margin-top:7px"></span><span>Location-based recommendations to prevent wrong-store orders</span></div>
+          <div class="dot-item"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0;margin-top:7px"></span><span>Home screen address mismatch alert before checkout</span></div>
+          <div class="dot-item"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0;margin-top:7px"></span><span>Contact channel for restaurant / driver to resolve errors fast</span></div>
+        </div>
+      </div>
+
+      <!-- Row 03 -->
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:0;background:var(--bg);border-radius:0 0 var(--r) var(--r);overflow:hidden">
+        <div style="padding:36px 40px;border-right:1px solid var(--border)">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:12px">Problem 03</div>
+          <div style="font-size:16px;font-weight:800;letter-spacing:-.02em;line-height:1.4">Editing feels unintuitive and risky</div>
+        </div>
+        <div style="padding:36px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:4px">Solutions</div>
+          <div class="dot-item"><span style="width:6px;height:6px;border-radius:50%;background:var(--olive);flex-shrink:0;margin-top:7px"></span><span>More intuitive add / remove controls in the cart</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PERSONA & JOURNEY ══ -->
+<section id="persona">
+  <div class="wrap">
+    <span class="lbl">User Persona</span>
+    <h2 class="h2">Meet Angela — experiencing all three gaps<br class="brk"> in a single order.</h2>
+    <p class="body">Mapping Angela's journey from menu browsing to pickup revealed exactly where each gap surfaced and what she needed in that moment.</p>
+
+    <!-- Persona: 3-col card layout -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;margin-top:40px">
+
+      <!-- Name + role + tags -->
+      <div class="card" style="padding:36px">
+        <div style="font-size:22px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px">Angela</div>
+        <div style="font-size:14px;color:var(--muted);margin-bottom:24px">22 · College Student</div>
+        <div class="tag-row" style="margin-top:0">
+          <span class="tag">#Indecisive</span>
+          <span class="tag">#Clumsy</span>
+          <span class="tag">#InARush</span>
+        </div>
+      </div>
+
+      <!-- Quote -->
+      <div class="card" style="padding:36px;display:flex;align-items:center">
+        <p style="font-size:16px;font-weight:700;letter-spacing:-.015em;line-height:1.5;font-style:italic;color:var(--text)">"I want to order food quickly and get it delivered safely!"</p>
+      </div>
+
+      <!-- Frustrations -->
+      <div class="card" style="padding:36px">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Frustrations</div>
+        <div class="dot-list" style="margin-top:0">
+          <div class="dot-item"><span class="dot"></span><span>Can't find the right category fast</span></div>
+          <div class="dot-item"><span class="dot"></span><span>Orders to the wrong saved address</span></div>
+          <div class="dot-item"><span class="dot"></span><span>Can't reach the driver after delivery</span></div>
+          <div class="dot-item"><span class="dot"></span><span>Accidentally adds extras — cart is confusing</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Journey map: cropped image -->
+    <div style="margin-top:40px">
+      <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Journey Map</div>
+      <img src="images/uber eats/journey-map.png" alt="Angela's journey map — emotions, pain points, needs, and opportunities" style="width:100%;display:block;border-radius:var(--r)" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ══ UX STRATEGY OVERVIEW ══ -->
+<section class="alt" id="strategy">
+  <div class="wrap">
+    <span class="lbl">UX Strategy</span>
+    <h2 class="h2">Three targeted strategies, one per gap.</h2>
+    <p class="body">Rather than a full redesign, each strategy closes exactly one structural gap — working within Uber Eats' existing design system.</p>
+
+    <!-- Strategy diagram: Problem → dotted line → Strategy -->
+    <div style="display:flex;flex-direction:column;gap:16px;margin-top:48px">
+
+      <!-- Row 01 -->
+      <div style="display:flex;align-items:center;gap:0">
+        <div style="padding:28px 32px;flex:0 0 38%">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Problem 01</div>
+          <div style="font-size:15px;font-weight:600;color:var(--muted);line-height:1.4">Low accessibility to important information</div>
+        </div>
+        <div style="flex:1;border-bottom:2px dashed var(--border);margin:0 4px;position:relative">
+          <div style="position:absolute;right:-6px;top:-6px;width:10px;height:10px;border-radius:50%;background:var(--olive)"></div>
+        </div>
+        <div style="background:#fff;border-radius:var(--r);padding:28px 32px;flex:0 0 48%">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:8px">Strategy 01</div>
+          <div style="font-size:15px;font-weight:800;color:var(--text);line-height:1.4;margin-bottom:6px">Smart Location Notifications</div>
+          <div style="font-size:13.5px;color:var(--muted);line-height:1.55">Proactive address verification and distance-aware store visibility before orders go wrong.</div>
+        </div>
+      </div>
+
+      <!-- Row 02 -->
+      <div style="display:flex;align-items:center;gap:0">
+        <div style="padding:28px 32px;flex:0 0 38%">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Problem 02</div>
+          <div style="font-size:15px;font-weight:600;color:var(--muted);line-height:1.4">Insufficient alternatives for delivery mishaps</div>
+        </div>
+        <div style="flex:1;border-bottom:2px dashed var(--border);margin:0 4px;position:relative">
+          <div style="position:absolute;right:-6px;top:-6px;width:10px;height:10px;border-radius:50%;background:var(--olive)"></div>
+        </div>
+        <div style="background:#fff;border-radius:var(--r);padding:28px 32px;flex:0 0 48%">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:8px">Strategy 02</div>
+          <div style="font-size:15px;font-weight:800;color:var(--text);line-height:1.4;margin-bottom:6px">Post-Delivery Communication Window</div>
+          <div style="font-size:13.5px;color:var(--muted);line-height:1.55">20-min driver chat, accessible order history, and a restaurant review channel.</div>
+        </div>
+      </div>
+
+      <!-- Row 03 -->
+      <div style="display:flex;align-items:center;gap:0">
+        <div style="padding:28px 32px;flex:0 0 38%">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Problem 03</div>
+          <div style="font-size:15px;font-weight:600;color:var(--muted);line-height:1.4">The lack of intuitiveness in the editing feature</div>
+        </div>
+        <div style="flex:1;border-bottom:2px dashed var(--border);margin:0 4px;position:relative">
+          <div style="position:absolute;right:-6px;top:-6px;width:10px;height:10px;border-radius:50%;background:var(--olive)"></div>
+        </div>
+        <div style="background:#fff;border-radius:var(--r);padding:28px 32px;flex:0 0 48%">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--olive);margin-bottom:8px">Strategy 03</div>
+          <div style="font-size:15px;font-weight:800;color:var(--text);line-height:1.4;margin-bottom:6px">Hierarchical Categories + Smarter Cart</div>
+          <div style="font-size:13.5px;color:var(--muted);line-height:1.55">Category-first home screen, subcategory tabs, and clear stepper controls.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ STRATEGY 01 ══ -->
+<section id="strategy-01">
+  <div class="wrap">
+    <span class="lbl">UX Strategy 01</span>
+    <h2 class="h2">Catching address errors early,<br class="brk"> and offering a fix if they slip through.</h2>
+    <p class="body">A home screen alert now catches address mismatches before browsing starts. If the user still reaches the cart with a farther store selected, a one-tap branch switch carries items over automatically.</p>
+
+    <div style="background:var(--card);border-radius:28px;border:1px solid var(--border);padding:48px;margin-top:48px">
+
+      <!-- Feature A -->
+      <div class="feat">
+        <div>
+          <span class="feat-eyebrow">01 · Address Mismatch Alert</span>
+          <h3 class="feat-heading">Move the address warning from checkout to the home screen</h3>
+          <div class="feat-points">
+            <div class="feat-point"><span class="feat-dot"></span><span>GPS mismatch alert appears on the home screen before browsing starts — not at checkout after the cart is built</span></div>
+            <div class="feat-point"><span class="feat-dot"></span><span>Out-of-range stores are visually dimmed, making wrong choices obvious at a glance</span></div>
+          </div>
+          <div class="feat-callout" style="background:var(--bg)">The original warning appeared only at checkout — after the cart was fully built. This redesign catches the error before any effort is wasted.</div>
+        </div>
+        <div class="feat-img">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start">
+            <div>
+              <div class="mockup-frame" style="height:480px;display:flex;align-items:flex-start;justify-content:center"><img src="images/uber eats/mockups/01.AS-IS.png" alt="AS-IS — checkout warning" style="height:100%;width:auto;display:block"></div>
+              <div class="mockup-caption" style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px">AS-IS</div>
+              <p style="font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45">Warning fires at checkout — cart already built</p>
+            </div>
+            <div>
+              <div class="mock" style="aspect-ratio:unset;height:480px"><img src="images/uber eats/mockups/01.TO-BE.png" alt="TO-BE — home screen GPS alert" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block"></div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--olive);margin-top:10px">TO-BE</div>
+              <p style="font-size:11px;color:var(--olive);font-weight:600;margin-top:4px;line-height:1.45">Alert before browsing · out-of-range stores dimmed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div style="border-top:1px solid var(--border);margin:48px 0"></div>
+
+      <!-- Feature B: Proximity-based Recommendation -->
+      <div class="feat rev">
+        <div>
+          <span class="feat-eyebrow">02 · Nearest Branch Suggestion</span>
+          <h3 class="feat-heading">One-tap switch to the nearest branch — cart items carry over</h3>
+          <div class="feat-points">
+            <div class="feat-point"><span class="feat-dot"></span><span>If the selected store isn't the closest one, an inline cart prompt offers a one-tap branch switch</span></div>
+            <div class="feat-point"><span class="feat-dot"></span><span>Cart items transfer automatically — no rebuilding from scratch</span></div>
+          </div>
+          <div class="feat-callout" style="background:var(--bg)">Missed the nearest store? One tap switches it — without losing the cart.</div>
+        </div>
+        <div class="feat-img">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div>
+              <div class="mock"><img src="images/uber eats/mockups/1.2.before.png" alt="Cart — nearest store prompt" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+            </div>
+            <div>
+              <div class="mock"><img src="images/uber eats/mockups/1.2.clicked.png" alt="Cart — switched to nearest store" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ STRATEGY 02 ══ -->
+<section class="alt" id="strategy-02">
+  <div class="wrap">
+    <span class="lbl">UX Strategy 02</span>
+    <h2 class="h2">After delivery, users had no way to follow up.<br class="brk"> Two new channels fix that.</h2>
+    <p class="body">Once delivery is marked complete, all contact options disappear. A 20-minute driver chat window and a 3-day restaurant review channel give users a direct way to follow up.</p>
+
+    <div style="background:var(--bg);border-radius:28px;border:1px solid var(--border);padding:48px;margin-top:48px">
+
+      <!-- Sub 01: User-Driver Communication -->
+      <div class="feat">
+        <div>
+          <span class="feat-eyebrow">01 · Post-Delivery Driver Chat</span>
+          <h3 class="feat-heading">20-minute driver contact window</h3>
+          <div class="feat-points">
+            <div class="feat-point"><span class="feat-dot"></span><span>A pop-up on the home screen lets users contact the driver for up to 20 minutes after delivery is marked complete</span></div>
+            <div class="feat-point"><span class="feat-dot"></span><span>Order history moved to the bottom navigation — driver chat and "Get Help" are accessible together from each past order</span></div>
+          </div>
+          <div class="feat-callout" style="background:var(--card)">Contact used to disappear the moment delivery completed. Now users have 20 minutes to resolve wrong-address or missing-item issues directly with the driver.</div>
+        </div>
+        <div class="feat-img">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="mock"><img src="images/uber eats/mockups/2.1.1.png" alt="Home screen — delivery notification with driver contact" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+            <div class="mock"><img src="images/uber eats/mockups/2.2.2.png" alt="Order detail — driver chat and get help together" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);margin:48px 0"></div>
+
+      <!-- Sub 02: User-Restaurant Communication -->
+      <div class="feat rev">
+        <div>
+          <span class="feat-eyebrow">02 · Restaurant Review Channel</span>
+          <h3 class="feat-heading">3-day review window with direct restaurant response</h3>
+          <div class="feat-points">
+            <div class="feat-point"><span class="feat-dot"></span><span>Users can write detailed reviews — with photos and menu recommendations — up to 3 days post-delivery</span></div>
+            <div class="feat-point"><span class="feat-dot"></span><span>Restaurant owners receive reviews directly and can respond — creating a two-way communication channel that helps future users make informed choices</span></div>
+          </div>
+          <div class="feat-callout" style="background:var(--card)">Reviews work when they feel like communication, not complaint forms. Restaurants can now respond, and future users benefit from the exchange.</div>
+        </div>
+        <div class="feat-img">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="mock"><img src="images/uber eats/mockups/2.3.1.png" alt="Review form screen" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+            <div class="mock"><img src="images/uber eats/mockups/2.3.2.png" alt="Restaurant review tab" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ STRATEGY 03 ══ -->
+<section id="strategy-03">
+  <div class="wrap">
+    <span class="lbl">UX Strategy 03</span>
+    <h2 class="h2">Hierarchical categories for faster browsing,<br class="brk"> and separated cart controls for less confusion.</h2>
+    <p class="body">Instead of algorithm-picked recommendations, food is now organized into hierarchical categories for faster, intent-driven browsing. In the cart, three previously conflated actions are now separated into distinct, labeled controls.</p>
+
+    <div style="background:var(--card);border-radius:28px;border:1px solid var(--border);padding:48px;margin-top:48px">
+
+      <!-- Sub 01: Hierarchical Categories (home + detail page combined) -->
+      <div class="feat">
+        <div>
+          <span class="feat-eyebrow">01 · Category Navigation</span>
+          <h3 class="feat-heading">Category-first home screen and a menu-focused restaurant detail page</h3>
+          <div class="feat-points">
+            <div class="feat-point"><span class="feat-dot"></span><span>Home screen: a category grid replaces the feed-emphasized layout. Tapping a category opens a results screen with main and subcategory tabs, so users narrow choices by intent, not algorithm.</span></div>
+            <div class="feat-point"><span class="feat-dot"></span><span>Detail page: content-based tabs (Menu, Nutritional Info, Review) and subcategory chips replace algorithm-driven tabs</span></div>
+          </div>
+          <div class="feat-callout" style="background:var(--bg)">From the home screen to the detail page, every layer is now organized around what the user is looking for — not what the algorithm wants to surface.</div>
+        </div>
+        <div class="feat-img">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:68%">
+            <!-- Row 1: Home screens -->
+            <div style="align-self:start">
+              <div class="mock"><img src="images/uber eats/mockups/3.1.1.png" alt="Category-first home screen" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+              <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.45">Home · category grid</p>
+            </div>
+            <div style="align-self:start">
+              <div class="mock"><img src="images/uber eats/mockups/3.1.2.png" alt="Category subcategory view" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+              <p style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.45">Home · subcategory view</p>
+            </div>
+            <!-- Row 2: Detail page AS-IS / TO-BE -->
+            <div style="align-self:start;margin-top:16px">
+              <div class="mock"><img src="images/uber eats/mockups/3.2.As-Is.png" alt="Restaurant detail — AS-IS" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px">Detail · AS-IS</div>
+              <p style="font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45">Recommendation tabs bury the actual menu</p>
+            </div>
+            <div style="align-self:start;margin-top:16px">
+              <div class="mock"><img src="images/uber eats/mockups/3.2.To-Be.png" alt="Restaurant detail — TO-BE with tabs" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--olive);margin-top:8px">Detail · TO-BE</div>
+              <p style="font-size:11px;color:var(--olive);font-weight:600;margin-top:4px;line-height:1.45">Content tabs · subcategory chips · menu no longer buried</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);margin:48px 0"></div>
+
+      <!-- Sub 02: Smarter Cart -->
+      <div class="feat rev">
+        <div>
+          <span class="feat-eyebrow">02 · Cart & Checkout</span>
+          <h3 class="feat-heading">Quantity control, deletion, and item editing separated into distinct, labeled actions</h3>
+          <div class="feat-points">
+            <div class="feat-point"><span class="feat-dot"></span><span>Trash icon in the stepper replaced with a minus button — a dedicated × handles item deletion, making quantity control and removal two clearly separate actions</span></div>
+            <div class="feat-point"><span class="feat-dot"></span><span>Edit button surfaces item customization explicitly — no hidden interactions to discover</span></div>
+            <div class="feat-point"><span class="feat-dot"></span><span>Floating checkout bar keeps the live total always visible — no scrolling to confirm the price</span></div>
+          </div>
+          <div class="feat-callout" style="background:var(--bg)">Each action — adjust, delete, edit — is now a distinct, labeled control. No guessing, no accidental taps.</div>
+        </div>
+        <div class="feat-img">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start">
+            <div>
+              <div class="mock"><img src="images/uber eats/mockups/3.3.As-Is.png" alt="Cart — AS-IS" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px">AS-IS</div>
+            </div>
+            <div>
+              <div class="mock"><img src="images/uber eats/mockups/3.3.To-Be.png" alt="Cart — TO-BE with steppers" style="width:100%;height:100%;object-fit:cover;display:block"></div>
+              <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--olive);margin-top:10px">TO-BE</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ UI DESIGN ══ -->
+<section class="alt" id="ui-design">
+  <div class="wrap">
+    <span class="lbl">Design System</span>
+    <h2 class="h2">Built on Uber Eats' own visual language.</h2>
+    <p class="body">Every screen stays within Uber Eats' existing system — Uber Move typeface, green primary palette — so the solutions feel native. Three principles guide the work: <strong style="color:var(--text)">intuitive, reliable, hierarchical</strong>.</p>
+
+    <img src="images/uber eats/06.UI Design.png" alt="Design System — color, type, and component system" class="doc-img" loading="lazy">
+  </div>
+</section>
+
+<!-- ══ REFLECTION ══ -->
+<section id="reflection">
+  <div class="wrap">
+    <span class="lbl">Reflection</span>
+    <h2 class="h2">The hardest part was resisting<br class="brk"> the urge to redesign everything.</h2>
+    <p class="body">This project was about identifying exactly what needed to change and making those changes fit naturally within an existing system.</p>
+
+    <div class="takeaways" style="grid-template-columns:repeat(2,1fr)">
+      <div class="card takeaway">
+        <div class="takeaway-num">01</div>
+        <div class="takeaway-title">Surface complaints aren't the problem to solve</div>
+        <p class="takeaway-body">Delivery mishaps were the surface problem users described. Digging into the causes revealed three distinct gaps across prevention, recovery, and navigation, each requiring its own targeted solution.</p>
+      </div>
+      <div class="card takeaway">
+        <div class="takeaway-num">02</div>
+        <div class="takeaway-title">Constraints sharpen decisions</div>
+        <p class="takeaway-body">Every solution had to integrate into existing screens without disrupting the overall flow. The address alert, the post-delivery chat window, and the category grid all had to feel like they always belonged in the app, not like additions layered on top.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:96px">
+      <a href="index.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Work
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  © 2024 Yoonbin Alicia Kim. Designed with care.
+</footer>
+
+<script>
+(function() {
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.src = e.target.dataset.src;
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('img[data-src]').forEach(function(img) {
+    io.observe(img);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var nav = document.getElementById('sideNav');
+  var hero = document.getElementById('hero');
+  if(!nav||!hero) return;
+  function updateNavVisibility(){
+    nav.classList.toggle('visible', window.scrollY > 200);
+  }
+  window.addEventListener('scroll', updateNavVisibility, {passive:true});
+  updateNavVisibility();
+  var links = nav.querySelectorAll('.side-nav-link');
+  var sections = Array.from(links).map(function(l){
+    return document.querySelector(l.getAttribute('href'));
+  }).filter(Boolean);
+  var fill = document.getElementById('navFill');
+  var activeLink = null;
+  function setFill(link){
+    if(!fill||!link) return;
+    fill.style.height = (link.offsetTop + link.offsetHeight) + 'px';
+  }
+  var secObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(l){l.classList.remove('active')});
+        var a = nav.querySelector('[href="#'+e.target.id+'"]');
+        if(a){ a.classList.add('active'); activeLink = a; setFill(a); }
+      }
+    });
+  },{rootMargin:'-15% 0px -70% 0px',threshold:0});
+  sections.forEach(function(s){secObs.observe(s)});
+  window.addEventListener('resize', function(){ setFill(activeLink); }, {passive:true});
+})();
+</script>
+
+</body>
+</html>
